@@ -1,0 +1,7 @@
+linux-core/
+initramfs.cpio.gz
+rootfs/w1nOS
+rootfs/programs/aura
+rootfs/programs/core/ls
+init/target
+init/run.sh

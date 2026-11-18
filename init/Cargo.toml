@@ -1,0 +1,10 @@
+[package]
+name = "init"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+color-print = "0.3.7"
+equ = "1.0.2"
+passterm = "2.1.0"
+sha2 = "0.10.8"
