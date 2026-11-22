@@ -3,17 +3,16 @@ use std::{
     collections::HashMap,
     env, fs,
     io::{self, Write},
+    process::Command,
+    thread::sleep,
+    time::Duration,
 };
 
 use color_print::{cformat, cprint, cprintln};
 use passterm::prompt_password_stdin;
 use sha2::{Digest, Sha256};
 
-mod core;
-mod sbew;
-
 use crate::Stream::{Authication, Pass};
-use sbew::PATH;
 
 enum Stream {
     Authication,
@@ -21,7 +20,7 @@ enum Stream {
 }
 
 fn main() {
-    let user_file = equ::new("config/user.dat").load();
+    let user_file = equ::new("/config/user.dat").load();
     let mut user_data: HashMap<String, Types> = HashMap::new();
 
     match user_file {
@@ -60,8 +59,6 @@ fn main() {
 fn thread(name: &str, password: &str, stream: Stream) {
     env::set_current_dir("/user").unwrap();
 
-    let path: PATH = PATH::new();
-
     if let Authication = stream {
         loop {
             let input = getpass(cformat!("<b>Enter password:</> "));
@@ -72,14 +69,10 @@ fn thread(name: &str, password: &str, stream: Stream) {
             }
         }
     }
-
+    Command::new("/programs/core/shell").status().unwrap();
+    cprintln!("<r>KERNEL PANIC: </> please write us on github");
     loop {
-        let cur_temp = env::current_dir().unwrap();
-        let cur: Vec<&str> = cur_temp.to_str().unwrap().split("/").collect();
-        let text = cformat!("<m>{}@{}</> ) ", name, cur[cur.len() - 1]);
-
-        let input = input(text);
-        core::main(&input, name, &path);
+        sleep(Duration::from_secs(1));
     }
 }
 
@@ -108,7 +101,7 @@ fn login() {
         data.insert("password".to_string(), Types::String(pass.clone()));
     }
 
-    let file = equ::new("config/user.dat");
+    let file = equ::new("/config/user.dat");
     file.write(&data).unwrap();
 
     thread(&name.trim(), &pass.trim(), Pass);

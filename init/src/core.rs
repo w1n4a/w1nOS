@@ -12,6 +12,7 @@ pub fn main(input: &str, name: &str, path: &PATH) {
         "" => {}
         "me" => println!("{}", &name),
         "pwd" => println!("{:?}", env::current_dir().unwrap()),
+        "clear" => println!("\x1b[2J\x1b[3J\x1b[H"),
         x if cd.name(x) => cd.run(x),
         _ => {
             let mut args: Vec<&str> = input.split_whitespace().collect();
