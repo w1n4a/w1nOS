@@ -19,8 +19,8 @@
 | PATH | True | w1n4a | 16.11.2026 | Initial | Environment path resolver |
 | Bin | True | w1n4a | 16.11.2026 | Initial | Supports binary and flags |
 | Login | True | w1n4a | 16.11.2026 | 17.11.2026 | User authentication & session handler |
-| Crab | Progress... | w1n4a | 18.11.2026 | Initial | System binary pack (ls, read, mkfile) |
-| Shell v2 | False | None | 20.11.2026 | None | Next-gen shell |
+| Crab | True | w1n4a | 20.11.2026 | Initial | System binary pack (ls, read, mkfile) |
+| Shell v2 | Progres... | None | 22.11.2026 | None | Next-gen shell |
 | More | More... | None | None | None | Upcoming tools & utilities |
 
 ---
