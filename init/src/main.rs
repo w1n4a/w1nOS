@@ -32,14 +32,6 @@ fn main() {
         }
     }
 
-    let name: Option<&String> = match user_data.get("name") {
-        Some(v) => match v {
-            Types::String(v) => Some(v),
-            Types::Vector(_) => None,
-        },
-        None => None,
-    };
-
     let password: Option<&String> = match user_data.get("password") {
         Some(v) => match v {
             Types::String(v) => Some(v),
@@ -48,15 +40,15 @@ fn main() {
         None => None,
     };
 
-    match (name, password) {
-        (Some(n), Some(p)) => {
-            thread(n, p, Authication);
+    match password {
+        Some(p) => {
+            thread(p, Authication);
         }
         _ => login(),
     }
 }
 
-fn thread(name: &str, password: &str, stream: Stream) {
+fn thread(password: &str, stream: Stream) {
     env::set_current_dir("/user").unwrap();
 
     if let Authication = stream {
@@ -64,7 +56,6 @@ fn thread(name: &str, password: &str, stream: Stream) {
             let input = getpass(cformat!("<b>Enter password:</> "));
 
             if hash(&input) == password.trim() {
-                cprintln!("Welcome to <m>w1nOS</>, <b>{}</>!", &name);
                 break;
             }
         }
@@ -104,7 +95,7 @@ fn login() {
     let file = equ::new("/config/user.dat");
     file.write(&data).unwrap();
 
-    thread(&name.trim(), &pass.trim(), Pass);
+    thread(&pass.trim(), Pass);
 }
 
 fn hash(arg: &str) -> String {

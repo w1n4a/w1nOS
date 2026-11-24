@@ -1,0 +1,17 @@
+ls=crab ls
+cp=crab copy
+sc=crab slice
+mv=crab move
+rd=crab lines
+dl=crab del
+md=crab mkdir
+mf=crab mkfile
+wr=crab write
+fd=crab find
+ct=crab count
+msk=crab mask
+ln=crab len
+lnl=crab len-lines
+rv=crab reverse
+rvl=crab reverse-lines
+set=crab watch
